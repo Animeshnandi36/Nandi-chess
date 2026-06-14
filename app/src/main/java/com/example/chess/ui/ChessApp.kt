@@ -51,11 +51,11 @@ import java.util.Date
 import java.util.Locale
 
 // Beautiful glowing digital glass colors
-val DarkGlassBackground = Color(0xD80D111D)
-val GlassBorderColor = Color(0x33B1F5FF)
-val GlowNeonTeal = Color(0xFF00E5FF)
-val GlowNeonVibe = Color(0xFFFF007F)
-val DarkSteelGrey = Color(0xFF1E2530)
+val DarkGlassBackground = Color(0xF20F1113)
+val GlassBorderColor = Color(0x1AFFFFFF)
+val GlowNeonTeal = Color(0xFF6366F1)
+val GlowNeonVibe = Color(0xFF4F46E5)
+val DarkSteelGrey = Color(0xFF1E2022)
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -78,9 +78,9 @@ fun ChessApp(viewModel: ChessViewModel = viewModel()) {
             .background(
                 Brush.verticalGradient(
                     colors = listOf(
-                        Color(0xFF090A10),
-                        Color(0xFF16192E),
-                        Color(0xFF0E1220)
+                        Color(0xFF0F1113),
+                        Color(0xFF1C1E22),
+                        Color(0xFF0F1113)
                     )
                 )
             )
@@ -91,7 +91,7 @@ fun ChessApp(viewModel: ChessViewModel = viewModel()) {
             modifier = Modifier
                 .size(300.dp)
                 .offset(x = (-80).dp, y = 100.dp)
-                .background(Brush.radialGradient(listOf(Color(0x2213D5FF), Color.Transparent)))
+                .background(Brush.radialGradient(listOf(Color(0x226366F1), Color.Transparent)))
                 .blur(50.dp)
         )
         Box(
@@ -99,7 +99,7 @@ fun ChessApp(viewModel: ChessViewModel = viewModel()) {
                 .size(350.dp)
                 .align(Alignment.BottomEnd)
                 .offset(x = 100.dp, y = 50.dp)
-                .background(Brush.radialGradient(listOf(Color(0x1CFF00E4), Color.Transparent)))
+                .background(Brush.radialGradient(listOf(Color(0x1A8F94FB), Color.Transparent)))
                 .blur(60.dp)
         )
 
@@ -766,7 +766,7 @@ fun ChessBoardGrid(
                     val isLight = (actualRow + actualCol) % 2 == 0
                     val baseColor = when (state.boardTheme) {
                         BoardTheme.CLASSIC -> if (isLight) Color(0xFFF0D9B5) else Color(0xFFB58863)
-                        BoardTheme.COSMIC_GLASS -> if (isLight) Color(0xFF2E3E5C) else Color(0xFF141F36)
+                        BoardTheme.COSMIC_GLASS -> if (isLight) Color(0xFF4A5561) else Color(0xFF2C333A)
                         BoardTheme.FOREST -> if (isLight) Color(0xFFE0E0C0) else Color(0xFF70A070)
                         BoardTheme.CRIMSON_VELVET -> if (isLight) Color(0xFFE8D0C0) else Color(0xFF8B122B)
                     }
@@ -786,11 +786,11 @@ fun ChessBoardGrid(
 
                             // Highlight suggested move overlays
                             if (isSuggestionHint) {
-                                drawRect(color = Color(0x3A00FFFF))
+                                drawRect(color = Color(0x3A10B981))
                             }
                             // Highlight selection square aura
                             if (isSelected) {
-                                drawRect(color = Color(0x5500FF66))
+                                drawRect(color = Color(0x556366F1))
                             }
                         }
                         .clickable(
@@ -816,8 +816,8 @@ fun ChessBoardGrid(
 
                         // Piece text rendering
                         if (p != null) {
-                            val pieceColor = if (p.color == ChessColor.WHITE) Color(0xFFFFFDF0) else Color(0xFF111215)
-                            val pieceGlowColor = if (p.color == ChessColor.WHITE) Color(0x99FFFFFF) else Color(255, 60, 100, 150)
+                            val pieceColor = if (p.color == ChessColor.WHITE) Color.White else Color(0xFF1A1C1E)
+                            val pieceGlowColor = if (p.color == ChessColor.WHITE) Color(0x99FFFFFF) else Color(0x996366F1)
 
                             Text(
                                 text = p.getSymbol(),
@@ -842,11 +842,11 @@ fun ChessBoardGrid(
                                     .size(if (isCapture) 28.dp else 12.dp)
                                     .border(
                                         width = if (isCapture) 3.dp else 0.dp,
-                                        color = if (isCapture) Color(0xFFFF007F) else Color.Transparent,
+                                        color = if (isCapture) Color(0xFFEF4444) else Color.Transparent,
                                         shape = CircleShape
                                     )
                                     .background(
-                                        if (isCapture) Color.Transparent else Color(0xFF00FF66),
+                                        if (isCapture) Color.Transparent else GlowNeonTeal,
                                         CircleShape
                                     )
                             )
