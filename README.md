@@ -1,160 +1,140 @@
-♟️ Nandi Chess - Play, Learn, and Master Chess with AI
+# ♟️ Nandi Chess - Play, Learn, and Master Chess with AI
 
-Nandi Chess is an advanced AI-powered chess application featuring intelligent opponents, move analysis, opening databases, game history, and a modern user interface. The project includes both an Android application and a browser-based web version.
+Nandi Chess is an advanced AI-powered chess application featuring intelligent opponents, move analysis, opening databases, game history, and a modern user interface. The project includes both Android and Web versions with comprehensive chess functionality.
 
-🌐 Live Demo
+## 🌐 Live Demo
 
-Website: https://nandichess.netlify.app
+**[Play Nandi Chess Now](https://nandichess.netlify.app)** - https://nandichess.netlify.app
 
-✨ Features
+## ✨ Features
 
-🤖 AI Chess Engine
-
+### 🤖 AI Chess Engine
 - Multiple AI difficulty levels
-- Beginner (~500 Elo)
-- Intermediate (~1200 Elo)
-- Advanced (~1800 Elo)
-- Expert (~2500+ Elo)
+  - **Beginner** (~500 Elo)
+  - **Intermediate** (~1200 Elo)
+  - **Advanced** (~1800 Elo)
+  - **Expert** (~2500+ Elo)
 
-♟️ Complete Chess Rules
-
+### ♟️ Complete Chess Rules
 - Legal move validation
 - Check and checkmate detection
 - Stalemate detection
-- Castling
-- En passant
-- Pawn promotion
+- Castling, En passant, and Pawn promotion
 - Draw detection
 
-📊 Analysis Tools
-
+### 📊 Analysis Tools
 - Move history tracking
 - Position evaluation
 - Best move suggestions
 - Opening recognition
 - PGN import/export support
+- **Dynamic Evaluation Balance Bar** - Live-updating numerical value evaluating positional advantage
+- **Visual Canvas Snapshot Exports** - Renders current board setups and downloads as PNGs
 
-🎨 Modern Interface
-
-- Responsive design
+### 🎨 Modern Interface
+- Responsive design optimized for desktop and mobile
 - Dark mode support
-- Glassmorphism UI
-- Smooth animations
+- Glassmorphism UI with smooth animations
 - Mobile-friendly layout
 
-💾 Data Management
-
+### 💾 Data Management
 - Automatic game saving
 - Local storage support
 - Persistent settings
-- Match history
+- Match history tracking
 
-🏗️ Project Structure
+## 🏗️ Project Structure
 
+```
 Nandi-chess/
-├── app/
-├── assets/
-├── gradle/
-├── index.html
-├── style.css
-├── script.js
-├── README.md
-├── LICENSE
-└── metadata.json
+├── app/                      # Android app source code
+├── assets/                   # Resources and assets
+├── gradle/                   # Gradle build configuration
+├── index.html                # Web app entry point
+├── style.css                 # Web app styling
+├── script.js                 # Web app chess logic
+├── README.md                 # This file
+├── LICENSE                   # MIT License
+└── metadata.json             # Project metadata
+```
 
-🛠️ Technologies Used
+## 🛠️ Technologies Used
 
-Android
+### Android
+- **Kotlin** - Primary language
+- **Jetpack Compose** - Modern UI framework
+- **MVVM Architecture** - Clean code structure
+- **Room Database** - Local data persistence
+- **Coroutines** - Async operations
 
-- Kotlin
-- Jetpack Compose
-- MVVM Architecture
-- Room Database
-- Coroutines
+### Web
+- **HTML5** - Semantic markup
+- **CSS3** - Responsive styling with glassmorphism
+- **JavaScript** - Chess engine and interactivity
+- **Local Storage API** - Game persistence
 
-Web
+### Core Components
+1. **ChessEngine.kt** - Board state, move validation, legal move filtering
+2. **ChessAI.kt** - MiniMax algorithm with alpha-beta pruning
+3. **SoundEffects.kt** - PCM synthesized audio effects
+4. **ChessGameDatabase.kt** - Room Database entities and DAOs
+5. **ChessViewModel.kt** - State management and game logic
+6. **ChessApp.kt** - Jetpack Compose UI components
 
-- HTML5
-- CSS3
-- JavaScript
-- Local Storage API
+## 🚀 Installation & Setup
 
-🚀 Installation
+### Web Version
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Animeshnandi36/Nandi-chess.git
+   cd Nandi-chess
+   ```
+2. Open `index.html` in your web browser
+3. Or visit the live demo: https://nandichess.netlify.app
 
-Web Version
+### Android Version
+1. Ensure you have Android Studio and the Android SDK installed
+2. Clone the repository:
+   ```bash
+   git clone https://github.com/Animeshnandi36/Nandi-chess.git
+   cd Nandi-chess
+   ```
+3. Build the APK:
+   ```bash
+   ./gradlew assembleDebug
+   ```
+4. Run unit tests:
+   ```bash
+   ./gradlew :app:testDebugUnitTest
+   ```
 
-1. Clone the repository
+## 📸 Screenshots
 
-git clone https://github.com/Animeshnandi36/Nandi-chess.git
+The application features:
+- **Main Menu** - Game mode selection and settings
+- **Chess Board** - Interactive piece movement with drag-and-drop
+- **AI Match** - Real-time play against multiple difficulty levels
+- **Analysis Screen** - Move suggestions and position evaluation
 
-2. Open "index.html" in your browser
+## 🤝 Contributing
 
-Android Version
+Contributions, issues, and feature requests are welcome! Please feel free to:
+- Open issues for bugs or feature suggestions
+- Submit pull requests with improvements
+- Share feedback and ideas
 
-./gradlew assembleDebug
+## 📄 License
 
-📸 Screenshots
+This project is licensed under the **MIT License** - see the LICENSE file for details.
 
-Add screenshots of:
+## 👨‍💻 Developer
 
-- Main Menu
-- Chess Board
-- AI Match
-- Analysis Screen
-
-🤝 Contributing
-
-Contributions, issues, and feature requests are welcome.
-
-📄 License
-
-This project is licensed under the MIT License.
-
-👨‍💻 Developer
-
-Animesh Nandi
-
-GitHub: https://github.com/Animeshnandi36
-
----
-
-© 2026 Nandi Chess · Developed by Animesh Nandi*   **📊 Dynamic Evaluation Balance Bar:** Provides a live-updating numerical value evaluating positional advantage.
-*   **📝 PGN Imports/Exports:** Fully supports importing external standard FEN chess moves and copying PGN strings.
-*   **📸 Visual Canvas Snapshot Exports:** Renders current board setups into dynamic Canvas images and downloads them immediately as PNGs.
-
----
-
-## 🛠️ Native Android Architecture
-
-For native packaging, the codebase adheres to Material Design 3 and MVVM architecture:
-
-1.  **`ChessEngine.kt`:** Standard official board state structures, en passant trackers, castling permissions, promotion checks, and legal moves filtering.
-2.  **`ChessAI.kt`:** MiniMax algorithm pruning alpha/beta and material-development evaluation.
-3.  **`SoundEffects.kt`:** Core Android PCM synthesized audio sine-wave form players.
-4.  **`ChessGameDatabase.kt`:** Room Database entities, DAO interfaces, and coroutine-safe game persistence.
-5.  **`ChessViewModel.kt`:** The unidirectional state hub managing game modes, clocks, settings, undos, and database records.
-6.  **`ChessApp.kt`:** The main Jetpack Compose UI utilizing advanced frosted-glass modifiers, dynamic layout structures, responsive sizing, and interactive indicators.
-
----
-
-## 🌐 Web App Standalone
-
-The web frontend works cleanly in browser environments using the exact same logic:
-*   `index.html` — The main structural view.
-*   `style.css` — Modern glassmorphism layouts, colors, and keyframe animations.
-*   `script.js` — Core minimax logic, Web Audio synthesizer, and clock countdown loops.
+**Animesh Nandi**
+- GitHub: [@Animeshnandi36](https://github.com/Animeshnandi36)
+- Live Demo: [https://nandichess.netlify.app](https://nandichess.netlify.app)
 
 ---
 
-## 🚀 Running and Compiling the Applet
+**© 2026 Nandi Chess · Developed by Animesh Nandi**
 
-This project uses an incremental Gradle compile stack on the cloud Android build system.
-
-*   To check code correctness and build the Android APK:
-    ```bash
-    gradle assembleDebug
-    ```
-*   To test the Robolectric specs and screen graphics:
-    ```bash
-    gradle :app:testDebugUnitTest
-    ```
+Made with ♟️ and ❤️
