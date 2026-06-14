@@ -7,6 +7,11 @@ import android.media.AudioTrack
 object SoundEffects {
     private const val SAMPLE_RATE = 22050
     private var isMuted = false
+    private var appContext: android.content.Context? = null
+
+    fun init(context: android.content.Context) {
+        this.appContext = context.applicationContext
+    }
 
     fun setMuted(muted: Boolean) {
         isMuted = muted
@@ -62,12 +67,23 @@ object SoundEffects {
                     .setSampleRate(SAMPLE_RATE)
                     .setChannelMask(android.media.AudioFormat.CHANNEL_OUT_MONO)
                     .build()
-                val audioTrack = android.media.AudioTrack.Builder()
+                val audioTrackBuilder = android.media.AudioTrack.Builder()
                     .setAudioAttributes(audioAttributes)
                     .setAudioFormat(audioFormat)
                     .setBufferSizeInBytes(generatedSnd.size)
                     .setTransferMode(android.media.AudioTrack.MODE_STATIC)
-                    .build()
+
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+                    appContext?.let { ctx ->
+                        val attributionCtx = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+                            ctx.createAttributionContext("chess_audio")
+                        } else {
+                            ctx
+                        }
+                        audioTrackBuilder.setContext(attributionCtx)
+                    }
+                }
+                val audioTrack = audioTrackBuilder.build()
                 audioTrack.write(generatedSnd, 0, generatedSnd.size)
                 audioTrack.play()
                 Thread.sleep(durationMs.toLong() + 50)
@@ -117,12 +133,23 @@ object SoundEffects {
                     .setSampleRate(SAMPLE_RATE)
                     .setChannelMask(android.media.AudioFormat.CHANNEL_OUT_MONO)
                     .build()
-                val audioTrack = android.media.AudioTrack.Builder()
+                val audioTrackBuilder = android.media.AudioTrack.Builder()
                     .setAudioAttributes(audioAttributes)
                     .setAudioFormat(audioFormat)
                     .setBufferSizeInBytes(generatedSnd.size)
                     .setTransferMode(android.media.AudioTrack.MODE_STATIC)
-                    .build()
+
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+                    appContext?.let { ctx ->
+                        val attributionCtx = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+                            ctx.createAttributionContext("chess_audio")
+                        } else {
+                            ctx
+                        }
+                        audioTrackBuilder.setContext(attributionCtx)
+                    }
+                }
+                val audioTrack = audioTrackBuilder.build()
                 audioTrack.write(generatedSnd, 0, generatedSnd.size)
                 audioTrack.play()
                 Thread.sleep(totalDurationMs.toLong() + 50)
