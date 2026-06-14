@@ -1,13 +1,124 @@
-# Nandi Chess - Play, Learn, and Master Chess with AI
+♟️ Nandi Chess - Play, Learn, and Master Chess with AI
 
-Nandi Chess is an advanced AI-powered Chess application designed with a premium, glowing glassmorphic interface. It is fully built and compiled across two dual layers: a high-fidelity **native Android application (Kotlin/Jetpack Compose/Room)** and an elegant **independent HTML/CSS/JavaScript web runtime**.
+Nandi Chess is an advanced AI-powered chess application featuring intelligent opponents, move analysis, opening databases, game history, and a modern user interface. The project includes both an Android application and a browser-based web version.
 
-## ✨ Distinctive Features
+🌐 Live Demo
 
-*   **🎙️ Low-Latency Synth Feedback (SoundEffects Engine):** Handcrafts synthesized audio frequencies for piece moves, clicks, captures, and check alerts without relying on physical asset files.
-*   **🧠 Minimax AI opponent with Alpha-Beta Pruning:** Offers customized gameplay with adaptive depths representing 500 Elo (Beginner), 1200 Elo (Intermediate), 1800 Elo (Advanced), and 2500+ Elo (Expert) levels.
-*   **📂 Persistent Game Database:** Automatically saves positions, histories, and board drafts locally using a local SQLite standard (Room library on Android, and `localStorage` on the Web).
-*   **📊 Dynamic Evaluation Balance Bar:** Provides a live-updating numerical value evaluating positional advantage.
+Website: https://nandichess.netlify.app
+
+✨ Features
+
+🤖 AI Chess Engine
+
+- Multiple AI difficulty levels
+- Beginner (~500 Elo)
+- Intermediate (~1200 Elo)
+- Advanced (~1800 Elo)
+- Expert (~2500+ Elo)
+
+♟️ Complete Chess Rules
+
+- Legal move validation
+- Check and checkmate detection
+- Stalemate detection
+- Castling
+- En passant
+- Pawn promotion
+- Draw detection
+
+📊 Analysis Tools
+
+- Move history tracking
+- Position evaluation
+- Best move suggestions
+- Opening recognition
+- PGN import/export support
+
+🎨 Modern Interface
+
+- Responsive design
+- Dark mode support
+- Glassmorphism UI
+- Smooth animations
+- Mobile-friendly layout
+
+💾 Data Management
+
+- Automatic game saving
+- Local storage support
+- Persistent settings
+- Match history
+
+🏗️ Project Structure
+
+Nandi-chess/
+├── app/
+├── assets/
+├── gradle/
+├── index.html
+├── style.css
+├── script.js
+├── README.md
+├── LICENSE
+└── metadata.json
+
+🛠️ Technologies Used
+
+Android
+
+- Kotlin
+- Jetpack Compose
+- MVVM Architecture
+- Room Database
+- Coroutines
+
+Web
+
+- HTML5
+- CSS3
+- JavaScript
+- Local Storage API
+
+🚀 Installation
+
+Web Version
+
+1. Clone the repository
+
+git clone https://github.com/Animeshnandi36/Nandi-chess.git
+
+2. Open "index.html" in your browser
+
+Android Version
+
+./gradlew assembleDebug
+
+📸 Screenshots
+
+Add screenshots of:
+
+- Main Menu
+- Chess Board
+- AI Match
+- Analysis Screen
+
+🤝 Contributing
+
+Contributions, issues, and feature requests are welcome.
+
+📄 License
+
+This project is licensed under the MIT License.
+
+👨‍💻 Developer
+
+Animesh Nandi
+
+GitHub: https://github.com/Animeshnandi36
+
+---
+
+© 2026 Nandi Chess · Developed by Animesh Nandi*   **📊 Dynamic Evaluation Balance Bar:** Provides a live-updating numerical value evaluating positional advantage.
 *   **📝 PGN Imports/Exports:** Fully supports importing external standard FEN chess moves and copying PGN strings.
 *   **📸 Visual Canvas Snapshot Exports:** Renders current board setups into dynamic Canvas images and downloads them immediately as PNGs.
 
