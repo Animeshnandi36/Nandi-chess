@@ -1,0 +1,6 @@
+{
+  "name": "Nandi Chess",
+  "description": "An advanced AI-powered Chess web application featuring Minimax AI with custom ELO difficulties (500 to 2500+), chess clocks, dynamic evaluation bar, move analysis, interactive history, PGN copy/exports, local match saves, and clean modern glassmorphic interface layouts.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

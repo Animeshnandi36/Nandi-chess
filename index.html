@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nandi Chess · Play, Learn, and Master Chess with AI</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome for futuristic icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="ambient-glow glow-1"></div>
+    <div class="ambient-glow glow-2"></div>
+
+    <div class="app-container">
+        <!-- HEADER branding -->
+        <header class="app-header">
+            <h1>NANDI CHESS</h1>
+            <p class="subtitle">Play, Learn, and Master Chess with AI</p>
+        </header>
+
+        <!-- GAME LAYOUT GRID -->
+        <main class="game-layout">
+            
+            <!-- LEFT COLUMN: STATUS & BOARD -->
+            <section class="board-column">
+                <!-- CLOCKS SECTION -->
+                <div class="clocks-container">
+                    <!-- Black Timer -->
+                    <div class="clock-card" id="clock-black">
+                        <div class="player-info">
+                            <span class="active-dot"></span>
+                            <span class="player-title" id="name-black">Opponent Black</span>
+                        </div>
+                        <div class="timer-display" id="time-black">10:00</div>
+                    </div>
+                    <!-- White Timer -->
+                    <div class="clock-card" id="clock-white">
+                        <div class="player-info">
+                            <span class="active-dot"></span>
+                            <span class="player-title" id="name-white">Player White</span>
+                        </div>
+                        <div class="timer-display" id="time-white">10:00</div>
+                    </div>
+                </div>
+
+                <!-- EVALUATION INDICATOR BAR -->
+                <div class="evaluation-container">
+                    <div class="eval-info">
+                        <span id="eval-text">Advantage: +0.00</span>
+                        <span id="opening-text" class="opening-badge">Standard Starting Pos</span>
+                    </div>
+                    <div class="eval-bar">
+                        <div class="eval-white" id="eval-fill" style="width: 50%;"></div>
+                    </div>
+                </div>
+
+                <!-- THE CHESS BOARD -->
+                <div class="board-wrapper">
+                    <div id="chess-board" class="chess-board cosmic-theme"></div>
+                    
+                    <!-- AI Processing thinking cover overlay -->
+                    <div id="ai-loading" class="ai-loading-overlay hidden">
+                        <div class="spinner"></div>
+                        <p>Nandi AI is analyzing...</p>
+                    </div>
+                </div>
+
+                <!-- BOARD QUICK CONTROL BAR -->
+                <div class="quick-controls">
+                    <button id="btn-undo" title="Undo Move"><i class="fa-solid fa-rotate-left"></i></button>
+                    <button id="btn-flip" title="Flip Board Perspective"><i class="fa-solid fa-arrows-up-down"></i></button>
+                    <button id="btn-hint" title="Get Best Move Hint"><i class="fa-regular fa-lightbulb"></i></button>
+                    <button id="btn-analyze" title="Toggle Live Analyzer"><i class="fa-solid fa-compass"></i></button>
+                    <button id="btn-mute" title="Volume On/Off"><i class="fa-solid fa-volume-high"></i></button>
+                </div>
+            </section>
+
+            <!-- RIGHT COLUMN: MASTER TABS & CONTROLS -->
+            <section class="controls-column">
+                <div class="glass-panel">
+                    <!-- TABS BUTTONS -->
+                    <nav class="tabs-nav">
+                        <button class="tab-btn active" data-tab="settings">Settings</button>
+                        <button class="tab-btn" data-tab="notation">Moves & PGN</button>
+                        <button class="tab-btn" data-tab="database">Saved Games</button>
+                    </nav>
+
+                    <!-- TAB CONTENTS -->
+                    <div class="tabs-content">
+                        
+                        <!-- 1. SETTINGS TAB -->
+                        <div class="tab-pane active" id="tab-settings">
+                            <div class="settings-group">
+                                <h3>Game Mode Selection</h3>
+                                <div class="options-grid">
+                                    <button class="toggle-btn active" id="mode-pvai">vs Computer</button>
+                                    <button class="toggle-btn" id="mode-pvp">Pass & Play</button>
+                                    <button class="toggle-btn" id="mode-aivai">AI vs AI</button>
+                                </div>
+                            </div>
+
+                            <div class="settings-group" id="user-side-group">
+                                <h3>Your Starting Side</h3>
+                                <div class="options-grid-2">
+                                    <button class="toggle-btn active" id="side-white">Play as White</button>
+                                    <button class="toggle-btn" id="side-black">Play as Black</button>
+                                </div>
+                            </div>
+
+                            <div class="settings-group">
+                                <h3>Chess Clock Mode</h3>
+                                <div class="scrolling-row">
+                                    <button class="mode-btn active" data-minutes="10" data-increment="0">10 min (Rapid)</button>
+                                    <button class="mode-btn" data-minutes="3" data-increment="2">3+2 (Blitz)</button>
+                                    <button class="mode-btn" data-minutes="1" data-increment="0">1 min (Bullet)</button>
+                                    <button class="mode-btn" data-minutes="30" data-increment="0">30 min (Classical)</button>
+                                    <button class="mode-btn" data-minutes="9999" data-increment="0">No Clock</button>
+                                </div>
+                            </div>
+
+                            <div class="settings-group" id="ai-difficulty-group">
+                                <h3>AI Intelligence (Elo)</h3>
+                                <div class="options-grid-4">
+                                    <button class="toggle-btn" data-level="BEGINNER">Beginner<br><small>(500)</small></button>
+                                    <button class="toggle-btn active" data-level="INTERMEDIATE">Intermediate<br><small>(1200)</small></button>
+                                    <button class="toggle-btn" data-level="ADVANCED">Advanced<br><small>(1800)</small></button>
+                                    <button class="toggle-btn" data-level="EXPERT">Expert<br><small>(2500+)</small></button>
+                                </div>
+                            </div>
+
+                            <div class="settings-group">
+                                <h3>Applet Board Themes</h3>
+                                <div class="options-grid-4">
+                                    <button class="theme-btn active" data-theme="cosmic">Cosmic</button>
+                                    <button class="theme-btn" data-theme="classic">Walnut</button>
+                                    <button class="theme-btn" data-theme="forest">Grove</button>
+                                    <button class="theme-btn" data-theme="velvet">Velvet</button>
+                                </div>
+                            </div>
+
+                            <hr class="glass-divider">
+
+                            <div class="button-row">
+                                <button class="action-btn restart" id="btn-restart"><i class="fa-solid fa-arrows-rotate"></i> Restart</button>
+                                <button class="action-btn resign" id="btn-resign"><i class="fa-regular fa-flag"></i> Resign</button>
+                            </div>
+
+                            <button class="save-game-btn" id="btn-save-game"><i class="fa-solid fa-floppy-disk"></i> Save Current Board to Database</button>
+                        </div>
+
+                        <!-- 2. MOVING & NOTATION PGN TAB -->
+                        <div class="tab-pane" id="tab-notation">
+                            <div class="notation-header">
+                                <h3>Match Logs History</h3>
+                                <div class="pgn-buttons">
+                                    <button class="text-btn" id="btn-import-pgn"><i class="fa-solid fa-file-upload"></i> Import PGN</button>
+                                    <button class="text-btn" id="btn-export-pgn"><i class="fa-solid fa-file-download"></i> Export PGN</button>
+                                    <button class="text-btn" id="btn-export-image"><i class="fa-regular fa-image"></i> Export Image</button>
+                                </div>
+                            </div>
+                            <div class="moves-log-box" id="moves-log">
+                                <p class="empty-log-msg">No moves logged yet. Start a match!</p>
+                            </div>
+                        </div>
+
+                        <!-- 3. DATABASE SAVED GAMES TAB -->
+                        <div class="tab-pane" id="tab-database">
+                            <h3>Saved Positions Database</h3>
+                            <div class="saved-games-list" id="saved-games-container">
+                                <p class="empty-log-msg">No saved games found. Record your moves!</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- FOOTER branding -->
+        <footer class="app-footer">
+            <p>© 2026 Nandi Chess · Developed by Animesh Nandi</p>
+        </footer>
+    </div>
+
+    <!-- PROMOTION CHATTER CHOICE PANEL DIALOG BOX -->
+    <div id="promo-dialog" class="dialog-backdrop hidden">
+        <div class="dialog-content glass-dialog">
+            <h2>Choose Promotion Piece</h2>
+            <div class="promo-options">
+                <button class="promo-choice" data-piece="QUEEN">♛<br><span>Queen</span></button>
+                <button class="promo-choice" data-piece="ROOK">♜<br><span>Rook</span></button>
+                <button class="promo-choice" data-piece="BISHOP">♝<br><span>Bishop</span></button>
+                <button class="promo-choice" data-piece="KNIGHT">♞<br><span>Knight</span></button>
+            </div>
+            <button id="promo-cancel" class="dialog-secondary-btn">Cancel</button>
+        </div>
+    </div>
+
+    <!-- PGN TEXT POPUP BOX (IMPORT / EXPORT MODAL) -->
+    <div id="pgn-dialog" class="dialog-backdrop hidden">
+        <div class="dialog-content glass-dialog">
+            <h2 id="pgn-dialog-title">PGN Game Import</h2>
+            <textarea id="pgn-dialog-textarea" placeholder="Paste PGN string here ..."></textarea>
+            <div class="dialog-button-row">
+                <button id="pgn-dialog-close" class="dialog-secondary-btn">Cancel</button>
+                <button id="pgn-dialog-action" class="dialog-primary-btn">Execute</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CHESS GAME CONTROLLER -->
+    <script src="script.js"></script>
+</body>
+</html>
