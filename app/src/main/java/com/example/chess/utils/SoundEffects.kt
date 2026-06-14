@@ -53,14 +53,21 @@ object SoundEffects {
                     generatedSnd[idx++] = (valShort.toInt() and 0x00ff).toByte()
                     generatedSnd[idx++] = (valShort.toInt() and 0xff00 ushr 8).toByte()
                 }
-                val audioTrack = AudioTrack(
-                    AudioManager.STREAM_MUSIC,
-                    SAMPLE_RATE,
-                    AudioFormat.CHANNEL_OUT_MONO,
-                    AudioFormat.ENCODING_PCM_16BIT,
-                    generatedSnd.size,
-                    AudioTrack.MODE_STATIC
-                )
+                val audioAttributes = android.media.AudioAttributes.Builder()
+                    .setUsage(android.media.AudioAttributes.USAGE_MEDIA)
+                    .setContentType(android.media.AudioAttributes.CONTENT_TYPE_MUSIC)
+                    .build()
+                val audioFormat = android.media.AudioFormat.Builder()
+                    .setEncoding(android.media.AudioFormat.ENCODING_PCM_16BIT)
+                    .setSampleRate(SAMPLE_RATE)
+                    .setChannelMask(android.media.AudioFormat.CHANNEL_OUT_MONO)
+                    .build()
+                val audioTrack = android.media.AudioTrack.Builder()
+                    .setAudioAttributes(audioAttributes)
+                    .setAudioFormat(audioFormat)
+                    .setBufferSizeInBytes(generatedSnd.size)
+                    .setTransferMode(android.media.AudioTrack.MODE_STATIC)
+                    .build()
                 audioTrack.write(generatedSnd, 0, generatedSnd.size)
                 audioTrack.play()
                 Thread.sleep(durationMs.toLong() + 50)
@@ -101,14 +108,21 @@ object SoundEffects {
                     generatedSnd[idx++] = (valShort.toInt() and 0x00ff).toByte()
                     generatedSnd[idx++] = (valShort.toInt() and 0xff00 ushr 8).toByte()
                 }
-                val audioTrack = AudioTrack(
-                    AudioManager.STREAM_MUSIC,
-                    SAMPLE_RATE,
-                    AudioFormat.CHANNEL_OUT_MONO,
-                    AudioFormat.ENCODING_PCM_16BIT,
-                    generatedSnd.size,
-                    AudioTrack.MODE_STATIC
-                )
+                val audioAttributes = android.media.AudioAttributes.Builder()
+                    .setUsage(android.media.AudioAttributes.USAGE_MEDIA)
+                    .setContentType(android.media.AudioAttributes.CONTENT_TYPE_MUSIC)
+                    .build()
+                val audioFormat = android.media.AudioFormat.Builder()
+                    .setEncoding(android.media.AudioFormat.ENCODING_PCM_16BIT)
+                    .setSampleRate(SAMPLE_RATE)
+                    .setChannelMask(android.media.AudioFormat.CHANNEL_OUT_MONO)
+                    .build()
+                val audioTrack = android.media.AudioTrack.Builder()
+                    .setAudioAttributes(audioAttributes)
+                    .setAudioFormat(audioFormat)
+                    .setBufferSizeInBytes(generatedSnd.size)
+                    .setTransferMode(android.media.AudioTrack.MODE_STATIC)
+                    .build()
                 audioTrack.write(generatedSnd, 0, generatedSnd.size)
                 audioTrack.play()
                 Thread.sleep(totalDurationMs.toLong() + 50)
